@@ -5,8 +5,8 @@
 
     <parent>
         <artifactId>cloudnet</artifactId>
-        <groupId>de.dytanic.cloudnet</groupId>
-        <version>dev-snapshot</version>
+        <groupId>eu.cloudnetservice.cloudnet.v2</groupId>
+        <version>2.2.0-SNAPSHOT</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
@@ -21,8 +21,15 @@
 
     <repositories>
         <repository>
-            <id>cloudnet-repo</id>
-            <url>https://cloudnetservice.eu/repositories</url>
+            <id>cloudnet</id>
+            <name>CloudNet Snapshot Repository</name>
+            <url>https://repo.cloudnetservice.eu/repository/snapshots/</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
         </repository>
         <!-- SpigotMC repository -->
         <repository>
@@ -49,6 +56,10 @@
                 <exclusion>
                     <groupId>com.google.guava</groupId>
                     <artifactId>guava</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>net.md-5</groupId>
+                    <artifactId>bungeecord-chat</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>

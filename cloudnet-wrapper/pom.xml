@@ -5,8 +5,8 @@
 
     <parent>
         <artifactId>cloudnet</artifactId>
-        <groupId>de.dytanic.cloudnet</groupId>
-        <version>dev-snapshot</version>
+        <groupId>eu.cloudnetservice.cloudnet.v2</groupId>
+        <version>2.2.0-SNAPSHOT</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
@@ -15,26 +15,20 @@
 
     <dependencies>
         <dependency>
-            <groupId>de.dytanic.cloudnet</groupId>
+            <groupId>eu.cloudnetservice.cloudnet.v2</groupId>
             <artifactId>cloudnet-command</artifactId>
             <version>${project.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>de.dytanic.cloudnet</groupId>
+            <groupId>eu.cloudnetservice.cloudnet.v2</groupId>
             <artifactId>cloudnet-web</artifactId>
             <version>${project.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>de.dytanic.cloudnet</groupId>
+            <groupId>eu.cloudnetservice.cloudnet.v2</groupId>
             <artifactId>cloudnet-help</artifactId>
-            <version>${project.version}</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>de.dytanic.cloudnet</groupId>
-            <artifactId>cloudnet-snakeconfig</artifactId>
             <version>${project.version}</version>
             <scope>compile</scope>
         </dependency>
@@ -43,6 +37,12 @@
             <artifactId>jopt-simple</artifactId>
             <version>${dependency.jopt-simple.version}</version>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>eu.cloudnetservice.cloudnet.v2</groupId>
+            <artifactId>cloudnet-api-bridge</artifactId>
+            <version>${project.version}</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
@@ -59,6 +59,17 @@
                         <goals>
                             <goal>shade</goal>
                         </goals>
+                        <configuration>
+                            <minimizeJar>true</minimizeJar>
+                            <artifactSet>
+                                <excludes>
+                                    <exclude>com.squareup.okio:okio</exclude>
+                                    <exclude>com.squareup.okhttp3:okhttp</exclude>
+                                    <exclude>org.jetbrains.kotlin:kotlin-stdlib</exclude>
+                                    <exclude>org.jetbrains.kotlin:kotlin-stdlib-common</exclude>
+                                </excludes>
+                            </artifactSet>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
@@ -69,7 +80,7 @@
                 <configuration>
                     <archive>
                         <manifestEntries>
-                            <Main-Class>de.dytanic.cloudnetwrapper.bootstrap.CloudNetLauncher</Main-Class>
+                            <Main-Class>eu.cloudnetservice.cloudnet.v2.wrapper.bootstrap.CloudNetLauncher</Main-Class>
                             <Version>${project.version}</Version>
                             <Implementation-Version>${service.version}</Implementation-Version>
                             <Specification-Version>${service.type}</Specification-Version>
